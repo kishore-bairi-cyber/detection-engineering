@@ -14,13 +14,6 @@ usecases/
 ├── triage_report.md # 5W+1H investigation report template
 └── alert_template.json # JSON alert definition for SIEM automation
 
-<<<<<<< HEAD
-=======
-yaml
-Copy
-Edit
-
->>>>>>> 2d20783 (docs: add root README.md)
 ---
 
 ## ✅ Completed Use Cases
@@ -44,7 +37,6 @@ Edit
 
 ---
 
-<<<<<<< HEAD
 ## 📌 Conventions
 - **MITRE IDs** in folder names for quick mapping.
 - **5W+1H** triage report format for consistency.
