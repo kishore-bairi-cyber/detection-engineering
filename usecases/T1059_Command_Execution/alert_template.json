@@ -1,0 +1,6 @@
+{
+  "name": "T1059 Command Execution Detection",
+  "severity": "High",
+  "query": "SPL query here",
+  "description": "Detects command execution activity per MITRE ATT&CK T1059."
+}

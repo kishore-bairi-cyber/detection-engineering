@@ -1,0 +1,2 @@
+# SPL Query
+# Add the Splunk SPL query for detecting T1059 Command Execution.
