@@ -14,6 +14,13 @@ usecases/
 ├── triage_report.md # 5W+1H investigation report template
 └── alert_template.json # JSON alert definition for SIEM automation
 
+<<<<<<< HEAD
+=======
+yaml
+Copy
+Edit
+
+>>>>>>> 2d20783 (docs: add root README.md)
 ---
 
 ## ✅ Completed Use Cases
@@ -37,6 +44,7 @@ usecases/
 
 ---
 
+<<<<<<< HEAD
 ## 📌 Conventions
 - **MITRE IDs** in folder names for quick mapping.
 - **5W+1H** triage report format for consistency.
@@ -59,3 +67,14 @@ Include all five files (background.md, simulated_log.log, detection_spl.txt, tri
 Commit & push your changes.
 
 Open a Pull Request.
+=======
+## 📚 References
+- [MITRE ATT&CK Framework](https://attack.mitre.org/)
+- [Splunk Documentation](https://docs.splunk.com/)
+- [Sigma Rules Project](https://github.com/SigmaHQ/sigma)
+
+---
+
+**Author:** [Kishore Bairi Cyber](https://github.com/kishore-bairi-cyber)  
+**Focus:** Blue Team • Detection Engineering • DFIR • AI-SOC Automation
+>>>>>>> 2d20783 (docs: add root README.md)
