@@ -69,4 +69,3 @@ Open a Pull Request.
 
 **Author:** [Kishore Bairi Cyber](https://github.com/kishore-bairi-cyber)  
 **Focus:** Blue Team • Detection Engineering • DFIR • AI-SOC Automation
->>>>>>> 2d20783 (docs: add root README.md)
