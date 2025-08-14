@@ -1,9 +1,0 @@
-2025-08-14 10:01:12 Host=WIN-ENG-01 User=corp\priya.p URI=https://updates.microsoft.com/update?id=1111 Tool=browser
-2025-08-14 10:01:13 Host=WIN-ENG-02 User=corp\rahul.b URI=https://zoom.us/client/latest Tool=browser
-2025-08-14 10:01:15 Host=WIN-ENG-03 User=corp\neha.r URI=https://malicious.c2sync.co/b64=ZXZpbAo= Tool=curl
-2025-08-14 10:02:01 Host=WIN-ENG-03 User=corp\neha.r URI=https://malicious.c2sync.co/b64=ZXZpbAo= Tool=curl
-2025-08-14 10:02:30 Host=WIN-ENG-03 User=corp\neha.r URI=https://malicious.c2sync.co/b64=ZXZpbAo= Tool=curl
-2025-08-14 10:03:00 Host=WIN-ENG-05 User=corp\deepak.t URI=https://hrportal.corp.local Tool=browser
-2025-08-14 10:03:15 Host=WIN-ENG-06 User=corp\amit.k URI=https://cdn.slack.com Tool=browser
-2025-08-14 10:03:45 Host=WIN-ENG-08 User=corp\ajay.v URI=https://malicious.c2sync.co/ping Tool=wget
-2025-08-14 10:04:10 Host=WIN-ENG-08 User=corp\ajay.v URI=https://malicious.c2sync.co/ping Tool=wget
