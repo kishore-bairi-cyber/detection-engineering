@@ -1,0 +1,11 @@
+{
+  "alert_name": "Suspicious Process Discovery Command",
+  "host": "WIN-SRV-002",
+  "user": "corp\\ajay.verma",
+  "process": "cmd.exe",
+  "command_line": "tasklist /v",
+  "timestamp": "2025-08-08T11:42:59Z",
+  "mitre_technique": "T1057",
+  "severity": "Medium",
+  "description": "A potentially unauthorized user ran a process discovery command, possibly for reconnaissance before privilege escalation or injection."
+}

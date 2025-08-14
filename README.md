@@ -14,6 +14,7 @@ usecases/
 ├── triage_report.md # 5W+1H investigation report template
 └── alert_template.json # JSON alert definition for SIEM automation
 
+
 ---
 
 ## ✅ Completed Use Cases
@@ -59,7 +60,8 @@ Include all five files (background.md, simulated_log.log, detection_spl.txt, tri
 Commit & push your changes.
 
 Open a Pull Request.
-=======
+
+
 ## 📚 References
 - [MITRE ATT&CK Framework](https://attack.mitre.org/)
 - [Splunk Documentation](https://docs.splunk.com/)
@@ -68,4 +70,6 @@ Open a Pull Request.
 ---
 
 **Author:** [Kishore Bairi Cyber](https://github.com/kishore-bairi-cyber)  
+**Focus:** Blue Team • Detection Engineering • DFIR • AI-SOC Automation
+
 **Focus:** Blue Team • Detection Engineering • DFIR • AI-SOC Automation

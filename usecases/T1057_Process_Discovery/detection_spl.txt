@@ -1,0 +1,3 @@
+index=linux_lab sourcetype=linux_sim
+CommandLine="*tasklist*" OR CommandLine="*ps*" OR CommandLine="*Get-Process*" OR CommandLine="*wmic*process*"
+| stats count by Host, User, Process, CommandLine, _time
