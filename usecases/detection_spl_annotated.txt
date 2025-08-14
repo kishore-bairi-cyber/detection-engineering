@@ -1,3 +1,0 @@
-index=linux_lab sourcetype=linux_sim URI="*http*"
-| stats count by Host, User, URI, Tool, _time
-| where like(URI, "%malicious.c2sync.co%") OR match(URI, ".*b64=.*")
