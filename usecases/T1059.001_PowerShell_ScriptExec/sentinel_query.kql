@@ -1,0 +1,10 @@
+// Microsoft Sentinel KQL – Suspicious PowerShell
+let suspicious_terms = dynamic(["-enc","-encodedcommand","-nop","-w hidden","start-bitstransfer",
+  "System.Management.Automation.AmsiUtils","iex","downloadstring","iwr","invoke-webrequest"]);
+let bad_pattern = @"(?i)iex\s*\(new-object\s+net\.webclient\)\.downloadstring";
+DeviceProcessEvents
+| where Process has_any ("powershell.exe","pwsh.exe")
+| where ProcessCommandLine has_any (suspicious_terms) or ProcessCommandLine matches regex bad_pattern
+| extend Parent = tostring(InitiatingProcessFileName), User = tostring(AccountName)
+| project Timestamp, DeviceName, User, Process, ProcessCommandLine, Parent, InitiatingProcessCommandLine
+| order by Timestamp desc

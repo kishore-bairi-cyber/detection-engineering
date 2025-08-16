@@ -1,0 +1,15 @@
+# Splunk SPL – Suspicious PowerShell
+(index=windows sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational OR sourcetype=WinEventLog:Security OR sourcetype=PowerShell:Operational)
+(EventCode=1 OR EventID=1 OR EventCode=4688 OR EventID=4688 OR EventID=4104)
+(Image="*\\powershell.exe" OR NewProcessName="*\\powershell.exe" OR Message="*PowerShell*")
+| eval cmd=coalesce(CommandLine, NewProcessName." ".CommandLine, Message)
+| where like(lower(cmd), "%-enc%")
+   OR like(lower(cmd), "%-encodedcommand%")
+   OR like(lower(cmd), "% -w hidden%")
+   OR like(lower(cmd), "% -nop%")
+   OR like(lower(cmd), "%iex%new-object%net.webclient%downloadstring%")
+   OR like(lower(cmd), "%start-bitstransfer%")
+   OR like(lower(cmd), "%system.management.automation.amsiutils%")
+   OR (len(replace(cmd, "\s", ""))>200 AND like(lower(cmd), "%powershell%"))
+| table _time, host, user, Image, ParentImage, CommandLine
+| sort - _time
