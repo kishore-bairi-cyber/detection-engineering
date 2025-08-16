@@ -1,0 +1,13 @@
+// Microsoft Sentinel KQL – WMI Remote Execution (T1047)
+let sourceSide =
+DeviceProcessEvents
+| where Process has_any ("wmic.exe","powershell.exe","pwsh.exe")
+| where ProcessCommandLine has_any ("Invoke-WmiMethod","Invoke-CimMethod","Win32_Process","process call create","/node:");
+let targetSide =
+DeviceProcessEvents
+| where InitiatingProcessFileName =~ "WmiPrvSE.exe"
+| where Process in~ ("cmd.exe","powershell.exe","pwsh.exe");
+sourceSide
+| union isfuzzy=true targetSide
+| project Timestamp, DeviceName, AccountName, Process, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessCommandLine
+| order by Timestamp desc

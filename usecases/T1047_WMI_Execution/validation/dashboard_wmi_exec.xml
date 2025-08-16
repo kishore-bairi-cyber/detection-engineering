@@ -1,0 +1,15 @@
+<dashboard version="1.1">
+  <label>WMI Remote Execution – T1047</label>
+  <row>
+    <panel>
+      <title>WMI Execution Over Time</title>
+      <chart>
+        <search>
+          <query>(index=windows) sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational (Image="*\wmic.exe" OR CommandLine="*Invoke-WmiMethod*" OR CommandLine="*Win32_Process*Create*") | timechart span=30m count</query>
+          <earliest>-7d</earliest><latest>now</latest>
+        </search>
+        <option name="charting.chart">area</option>
+      </chart>
+    </panel>
+  </row>
+</dashboard>

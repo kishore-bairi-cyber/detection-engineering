@@ -1,0 +1,3 @@
+TimeCreated,Computer,EventID,ClientProcessId,User,Operation,SourceNamespace,Message
+2025-08-16T02:41:11+05:30,WS-100,5857,4321,ACME\\jane.doe,Start IWbemServices::ExecMethod,\\\\root\\cimv2,Client requested Win32_Process.Create on 10.10.5.21
+2025-08-16T02:43:11+05:30,WS-305,5861,9876,NT AUTHORITY\\SYSTEM,WmiPrvSE Host started,\\\\root\\cimv2,Provider host started for remote exec

