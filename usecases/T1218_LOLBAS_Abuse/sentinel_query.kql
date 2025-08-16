@@ -1,0 +1,6 @@
+// Microsoft Sentinel KQL – LOLBAS Abuse (T1218)
+DeviceProcessEvents
+| where FileName in~ ("certutil.exe","mshta.exe","rundll32.exe","regsvr32.exe","installutil.exe","MSBuild.exe")
+      or ProcessCommandLine has_any ("-urlcache","http://","https://","javascript:","vbscript:","scrobj.dll","/i:")
+| project Timestamp, DeviceName, AccountName, FileName, InitiatingProcessFileName, ProcessCommandLine
+| order by Timestamp desc

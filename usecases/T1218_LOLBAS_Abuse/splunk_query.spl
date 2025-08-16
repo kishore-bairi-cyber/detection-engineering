@@ -1,0 +1,16 @@
+# Splunk SPL – LOLBAS Abuse (T1218)
+(index=windows)
+(
+  sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational EventID=1
+  OR sourcetype=WinEventLog:Security EventCode=4688
+)
+| eval img=coalesce(Image, NewProcessName), cmd=coalesce(CommandLine, Message, _raw), parent=coalesce(ParentImage, ParentProcessName)
+| eval is_lolbin = if(like(lower(img), "%\\certutil.exe") OR like(lower(img), "%\\mshta.exe") OR like(lower(img), "%\\rundll32.exe") OR like(lower(img), "%\\regsvr32.exe") OR like(lower(img), "%\\installutil.exe") OR like(lower(img), "%\\msbuild.exe"), 1, 0)
+| eval sus_cmd = if(
+   like(lower(cmd), "% -urlcache -split -f%") OR like(lower(cmd), "%http://%") OR like(lower(cmd), "%https://%")
+   OR like(lower(cmd), "% scrobj.dll%") OR like(lower(cmd), "%javascript:%") OR like(lower(cmd), "%vbscript:%")
+   OR like(lower(cmd), "% /i:%") OR like(lower(cmd), "%/i:http%") OR like(lower(cmd), "%/s % /u %")
+   OR like(lower(cmd), "%/c %powershell%") OR like(lower(cmd), "%/c %cmd.exe%"), 1, 0)
+| where is_lolbin=1 OR sus_cmd=1
+| table _time, host, user, img, parent, cmd, is_lolbin, sus_cmd
+| sort - _time
