@@ -1,0 +1,15 @@
+# Splunk SPL – Suspicious Scheduled Task Creation (T1053.005)
+( index=windows )
+(
+  (sourcetype=WinEventLog:Security (EventCode=4698 OR EventCode=4702))
+  OR (sourcetype=XmlWinEventLog:Microsoft-Windows-TaskScheduler/Operational (EventID=106 OR EventID=200 OR EventID=140))
+  OR (sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational EventID=1 CommandLine="*schtasks* /create*")
+)
+| eval cmd=coalesce(CommandLine, Message)
+| eval suspicious = if(
+   like(lower(cmd), "%\\appdata\\%") OR like(lower(cmd), "%\\programdata\\%")
+   OR like(lower(cmd), "%powershell% -enc%") OR like(lower(cmd), "%mshta%") OR like(lower(cmd), "%wscript%")
+   OR like(lower(cmd), "% /sc minute%") OR like(lower(cmd), "% /ru system%"), 1, 0)
+| rex field=cmd "(?i)\s/tn\s+\"?(?<TaskName>[^\"]+)"
+| table _time, host, user, TaskName, cmd, suspicious
+| sort - _time

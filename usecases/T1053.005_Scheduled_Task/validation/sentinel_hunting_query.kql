@@ -1,0 +1,8 @@
+// Sentinel Hunting Query – Scheduled Tasks (T1053.005)
+let badTerms = dynamic(["\\AppData\\","\\ProgramData\\","powershell -enc","mshta","wscript","/SC MINUTE","/RU SYSTEM"]);
+SecurityEvent
+| where EventID in (4698, 4702)
+| extend Details = tostring(EventData)
+| where Details has_any (badTerms)
+| project TimeGenerated, Computer, Account, EventID, Details
+| order by TimeGenerated desc

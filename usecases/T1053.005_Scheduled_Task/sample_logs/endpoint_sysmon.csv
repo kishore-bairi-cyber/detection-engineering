@@ -1,0 +1,3 @@
+TimeCreated,Computer,User,Image,ParentImage,CommandLine
+2025-08-16T03:25:01+05:30,WS-220,acme\svc_updater,C:\Windows\System32\schtasks.exe,C:\Windows\System32\cmd.exe,"schtasks /create /sc minute /mo 5 /tn ""Updater\UserTask"" /tr ""powershell -ExecutionPolicy Bypass -enc SQBFAFgA..."" /ru SYSTEM"
+2025-08-16T03:30:44+05:30,WS-220,acme\svc_updater,C:\Windows\System32\schtasks.exe,C:\Windows\System32\cmd.exe,"schtasks /run /tn ""Updater\UserTask"""

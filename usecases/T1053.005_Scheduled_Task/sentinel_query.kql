@@ -1,0 +1,16 @@
+// Microsoft Sentinel KQL – Suspicious Scheduled Task Creation (T1053.005)
+let badTerms = dynamic(["\\AppData\\","\\ProgramData\\","powershell -enc","mshta","wscript","/SC MINUTE","/RU SYSTEM"]);
+let SchTasks =
+SecurityEvent
+| where EventID in (4698, 4702)
+| extend Details = tostring(EventData)
+| where Details has_any (badTerms)
+| project TimeGenerated, Computer, Account, EventID, Details;
+let ProcCreate =
+DeviceProcessEvents
+| where Process has_any ("schtasks.exe")
+| where ProcessCommandLine has_any (badTerms) or ProcessCommandLine contains "/create"
+| project Timestamp, DeviceName, AccountName, ProcessCommandLine;
+SchTasks
+| union isfuzzy=true ProcCreate
+| order by TimeGenerated desc

@@ -1,0 +1,47 @@
+<dashboard version="1.1">
+  <label>Scheduled Task Creation – T1053.005</label>
+  <description>Highlight suspicious scheduled task creation and updates.</description>
+  <row>
+    <panel>
+      <title>Task Creation/Update Over Time</title>
+      <chart>
+        <search>
+          <query>(index=windows) (sourcetype=WinEventLog:Security (EventCode=4698 OR EventCode=4702))
+| timechart span=1h count</query>
+          <earliest>-7d</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">area</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Top Task Names</title>
+      <table>
+        <search>
+          <query>(index=windows) sourcetype=WinEventLog:Security (EventCode=4698 OR EventCode=4702)
+| rex field=Message "(?i)/tn\s+\"?(?<TaskName>[^\"]+)"
+| stats count by TaskName
+| sort - count</query>
+          <earliest>-7d</earliest>
+          <latest>now</latest>
+        </search>
+      </table>
+    </panel>
+    <panel>
+      <title>Suspicious Task Creations</title>
+      <table>
+        <search>
+          <query>(index=windows) (sourcetype=WinEventLog:Security (EventCode=4698 OR EventCode=4702) OR sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational EventID=1 CommandLine="*schtasks* /create*")
+| eval cmd=coalesce(CommandLine, Message)
+| eval suspicious = if(like(lower(cmd), "%\\appdata\\%") OR like(lower(cmd), "%\\programdata\\%") OR like(lower(cmd), "%powershell% -enc%") OR like(lower(cmd), "%mshta%") OR like(lower(cmd), "%wscript%") OR like(lower(cmd), "% /sc minute%") OR like(lower(cmd), "% /ru system%"), 1, 0)
+| table _time, host, user, cmd, suspicious
+| sort - _time</query>
+          <earliest>-7d</earliest>
+          <latest>now</latest>
+        </search>
+      </table>
+    </panel>
+  </row>
+</dashboard>

@@ -1,0 +1,3 @@
+TimeCreated,Computer,EventID,TaskName,Message,ActionPath,Arguments,ResultCode
+2025-08-16T03:33:05+05:30,WS-220,200,Updater\UserTask,Action started.,powershell,-ExecutionPolicy Bypass -enc SQBFAFgA...,
+2025-08-16T03:33:40+05:30,WS-220,102,Updater\UserTask,Task completed.,,,0x0

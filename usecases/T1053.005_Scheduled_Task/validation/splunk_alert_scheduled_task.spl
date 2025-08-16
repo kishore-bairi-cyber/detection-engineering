@@ -1,0 +1,8 @@
+# Saved Search SPL – ScheduledTask_Suspicious_Create (run every 15m)
+(index=windows) ((sourcetype=WinEventLog:Security (EventCode=4698 OR EventCode=4702))
+ OR (sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational EventID=1 CommandLine="*schtasks* /create*"))
+| eval cmd=coalesce(CommandLine, Message)
+| where like(lower(cmd), "%\\appdata\\%") OR like(lower(cmd), "%\\programdata\\%")
+   OR like(lower(cmd), "%powershell% -enc%") OR like(lower(cmd), "%mshta%") OR like(lower(cmd), "%wscript%")
+   OR like(lower(cmd), "% /sc minute%") OR like(lower(cmd), "% /ru system%")
+| stats earliest(_time) as firstTime latest(_time) as lastTime count values(host) as hosts values(user) as users by cmd

