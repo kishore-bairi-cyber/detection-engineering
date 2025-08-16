@@ -1,0 +1,18 @@
+// Microsoft Sentinel KQL – SMB/PSExec Remote Service (T1021.002)
+// Service creation events (Windows/System 7045) if present via WindowsEvent
+let svcCreate = WindowsEvent
+| where EventID == 7045
+| extend ServiceName = tostring(EventData.ServiceName), ImagePath = tostring(EventData.ImagePath)
+| project TimeGenerated, Computer, RenderedDescription, ServiceName, ImagePath;
+// Security 4697 if ingested
+let sec4697 = SecurityEvent
+| where EventID == 4697
+| extend ServiceName = tostring(EventData.ServiceName), ImagePath = tostring(EventData.ImagePath)
+| project TimeGenerated, Computer, Account, ServiceName, ImagePath;
+// PsExec/sc on endpoints
+let proc = DeviceProcessEvents
+| where FileName in~ ("psexec.exe","psexec64.exe","sc.exe")
+| where ProcessCommandLine has_any ("create","PSEXESVC","\\\\ADMIN$");
+svcCreate
+| union isfuzzy=true sec4697, proc
+| order by TimeGenerated desc

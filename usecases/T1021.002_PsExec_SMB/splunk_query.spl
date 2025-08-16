@@ -1,0 +1,12 @@
+# Splunk SPL – SMB/PSExec Remote Service (T1021.002)
+(index=windows)
+(
+  sourcetype=WinEventLog:Security EventCode=4697  # Service installed
+  OR sourcetype=XmlWinEventLog:System EventID=7045  # Service Control Manager
+  OR (sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational EventID=1 (Image="*\\psexec*.exe" OR CommandLine="*sc * create*" OR CommandLine="*\\\\ADMIN$*"))
+)
+| eval cmd=coalesce(CommandLine, Message, _raw)
+| eval svc_name=coalesce(ServiceName, Service_Name, Service, TaskName)
+| eval suspicious = if(like(lower(cmd), "%psexec%") OR like(lower(cmd), "%psexesvc%") OR like(lower(cmd), "%\\\\admin$%") OR like(lower(cmd), "% sc % create %"), 1, 0)
+| table _time, host, user, svc_name, Image, ParentImage, cmd, suspicious
+| sort - _time

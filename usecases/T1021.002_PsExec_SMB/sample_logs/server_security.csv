@@ -1,0 +1,2 @@
+TimeCreated,Computer,EventID,ServiceName,ImagePath,SubjectUserName,Message
+2025-08-16T04:52:05+05:30,WS-310,4697,PSEXESVC,C:\Windows\PSEXESVC.exe,admin_ops,"A service was installed in the system. Service Name: PSEXESVC, Service File Name: C:\Windows\PSEXESVC.exe, Account: ACME\\admin_ops"

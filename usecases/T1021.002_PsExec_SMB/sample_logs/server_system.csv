@@ -1,0 +1,2 @@
+TimeCreated,Computer,EventID,ServiceName,ImagePath,Message
+2025-08-16T04:52:07+05:30,WS-310,7045,PSEXESVC,C:\Windows\PSEXESVC.exe,"A service was installed in the system. ServiceName: PSEXESVC, ImagePath: C:\Windows\PSEXESVC.exe"

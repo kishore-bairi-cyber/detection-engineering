@@ -1,0 +1,3 @@
+TimeCreated,Computer,User,Image,ParentImage,CommandLine
+2025-08-16T04:51:10+05:30,JUMP-01,acme\admin_ops,C:\Tools\PsExec64.exe,C:\Windows\System32\cmd.exe,PsExec64.exe \\WS-310 -s -d cmd /c whoami > \\WS-310\ADMIN$\temp\p.txt
+2025-08-16T04:51:44+05:30,WS-310,NT AUTHORITY\SYSTEM,C:\Windows\System32\sc.exe,C:\Windows\System32\services.exe,"sc create PSEXESVC binPath= ""C:\\Windows\\PSEXESVC.exe"" type= own start= demand"

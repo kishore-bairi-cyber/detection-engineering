@@ -1,0 +1,2 @@
+TimeCreated,SrcHost,DstHost,DstPort,Protocol,Process,Direction
+2025-08-16T04:50:48+05:30,JUMP-01,WS-310,445,TCP,PsExec64.exe,outbound
