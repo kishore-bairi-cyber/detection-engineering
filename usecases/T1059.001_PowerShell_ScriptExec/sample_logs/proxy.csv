@@ -1,3 +1,0 @@
-TimeGenerated,SrcHost,User,URL,Category,HTTPStatus,BytesOut,Process
-2025-08-16T02:17:01+05:30,WS-042,acme\svc_backup,http://updates-soft.com/p.ps1,Newly-Registered Domain,200,81234,powershell.exe
-2025-08-16T02:18:33+05:30,WS-105,acme\jane.doe,http://updates-soft.com/p.ps1,Unknown,200,39992,powershell.exe
