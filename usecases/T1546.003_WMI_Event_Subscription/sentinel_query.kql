@@ -1,0 +1,4 @@
+DeviceProcessEvents
+| where tolower(ProcessCommandLine) has_any ("root\\subscription","__eventfilter","commandlineeventconsumer","activescripteventconsumer")
+| project Timestamp, DeviceName, AccountName, FileName, InitiatingProcessFileName, ProcessCommandLine
+| order by Timestamp desc

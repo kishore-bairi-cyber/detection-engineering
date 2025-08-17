@@ -1,0 +1,1 @@
+- Enable WMI-Activity logs; restrict creation in root\subscription for non-admins.

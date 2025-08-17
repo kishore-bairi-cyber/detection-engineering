@@ -1,0 +1,4 @@
+TimeCreated,Computer,EventID,Operation,User,NamespaceName,Class,ClientProcessId,Message
+2025-08-16T07:05:11+05:30,WS-510,5858,Create,ACME\jane.doe,\\root\\subscription,__EventFilter,4321,Operation Succeeded
+2025-08-16T07:05:33+05:30,WS-510,5858,Create,ACME\jane.doe,\\root\\subscription,CommandLineEventConsumer,4321,Operation Succeeded
+2025-08-16T07:05:45+05:30,WS-510,5858,Create,ACME\jane.doe,\\root\\subscription,__FilterToConsumerBinding,4321,Operation Succeeded

@@ -1,0 +1,1 @@
+- Confirm filter, consumer, binding and capture consumer command.

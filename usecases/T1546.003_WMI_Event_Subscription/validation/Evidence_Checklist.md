@@ -1,0 +1,1 @@
+- Process creation with root\subscription; WMI-Activity Create events; screenshots.
