@@ -1,0 +1,30 @@
+<dashboard version="1.1">
+  <label>Process Injection – T1055</label>
+  <row>
+    <panel>
+      <title>CreateRemoteThread / OpenProcess Over Time</title>
+      <chart>
+        <search>
+          <query>(index=windows) sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational (EventID=8 OR EventID=10) | timechart span=1h count</query>
+          <earliest>-7d</earliest><latest>now</latest>
+        </search>
+        <option name="charting.chart">area</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Top Source → Target Pairs</title>
+      <table>
+        <search>
+          <query>(index=windows) sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational (EventID=8 OR EventID=10)
+| eval src=coalesce(SourceImage, Image), tgt=coalesce(TargetImage, ProcessName)
+| stats latest(_time) as last_seen count by host, src, tgt
+| convert ctime(last_seen)
+| sort - count</query>
+          <earliest>-7d</earliest><latest>now</latest>
+        </search>
+      </table>
+    </panel>
+  </row>
+</dashboard>

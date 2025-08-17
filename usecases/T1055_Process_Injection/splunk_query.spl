@@ -1,0 +1,11 @@
+# Splunk SPL – Process Injection (T1055)
+(index=windows) sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
+( EventID=8 OR EventCode=8 OR EventID=10 OR EventCode=10 )
+| eval src=coalesce(SourceImage, Image), tgt=coalesce(TargetImage, ProcessName), ga=GrantedAccess, cmd=coalesce(CommandLine, _raw)
+| eval src_bad = if(match(lower(src), "\\\\powershell.exe$|\\\\rundll32.exe$|\\\\regsvr32.exe$|\\\\mshta.exe$"),1,0)
+| eval tgt_sens = if(match(lower(tgt), "\\\\lsass.exe$|\\\\winlogon.exe$|\\\\explorer.exe$|\\\\svchost.exe$"),1,0)
+| eval high_access = if(lower(ga) IN ("0x1fffff","0x1410","0x1f3fff"),1,0)
+| where (EventID=8 OR EventCode=8) OR ((EventID=10 OR EventCode=10) AND (tgt_sens=1 OR high_access=1))
+| where NOT match(lower(src),"\\\\msmpeng.exe$|\\\\senseir.exe$|crowdstrike|carbonblack|defender|edr")
+| table _time host user EventID src tgt ga StartAddress CallTrace cmd
+| sort - _time

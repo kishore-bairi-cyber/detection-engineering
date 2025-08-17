@@ -1,0 +1,3 @@
+TimeCreated,Computer,User,EventID,SourceImage,TargetImage,GrantedAccess,StartAddress,CallTrace
+2025-08-16T07:40:11+05:30,WS-610,acme\jane.doe,8,C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe,C:\Windows\explorer.exe,0x1fffff,C:\Windows\System32\KERNEL32.DLL+0x1A2B,C:\Windows\System32\ntdll.dll+0x123;C:\Windows\System32\KERNEL32.DLL+0x1A2B
+2025-08-16T07:41:22+05:30,WS-610,acme\jane.doe,8,C:\Users\Public\tools\injector.exe,C:\Windows\System32\lsass.exe,0x1fffff,C:\Windows\System32\KERNEL32.DLL+0x2B3C,C:\Windows\System32\ntdll.dll+0x456;C:\Windows\System32\KERNEL32.DLL+0x2B3C

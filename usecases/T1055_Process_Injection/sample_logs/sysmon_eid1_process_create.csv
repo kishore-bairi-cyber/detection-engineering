@@ -1,0 +1,2 @@
+TimeCreated,Computer,User,EventID,Image,ParentImage,CommandLine
+2025-08-16T07:39:55+05:30,WS-610,acme\jane.doe,1,C:\Windows\System32\rundll32.exe,C:\Windows\System32\cmd.exe,"rundll32.exe C:\\Users\\Public\\loader.dll,EntryPoint"

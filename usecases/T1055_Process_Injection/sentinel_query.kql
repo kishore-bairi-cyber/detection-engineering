@@ -1,0 +1,14 @@
+// Microsoft Sentinel KQL – Process Injection (T1055)
+// MDE CreateRemoteThread / OpenProcess (if available)
+let inj = DeviceEvents
+| where ActionType in~ ("CreateRemoteThread","OpenProcess")
+| extend SrcImage = tostring(InitiatingProcessFileName), TgtImage = tostring(FileName), GA = tostring(AdditionalFields.GrantedAccess)
+| extend src_bad = iff(tolower(SrcImage) matches regex @"(\\powershell.exe$|\\rundll32.exe$|\\regsvr32.exe$|\\mshta.exe$)", 1, 0)
+| extend tgt_sens = iff(tolower(TgtImage) matches regex @"(\\lsass.exe$|\\winlogon.exe$|\\explorer.exe$|\\svchost.exe$)", 1, 0)
+| where ActionType == "CreateRemoteThread" or (ActionType == "OpenProcess" and (tgt_sens == 1 or GA in~ ("0x1fffff","0x1410","0x1f3fff")))
+| where SrcImage !endswith "MsMpEng.exe" and SrcImage !has_any ("SenseIR.exe","CrowdStrike","CarbonBlack");
+inj
+| project Timestamp, DeviceName, AccountName, ActionType, SrcImage, TgtImage, GA
+| order by Timestamp desc
+// Fallback if only Sysmon is available via WindowsEvent
+// WindowsEvent | where Provider == "Microsoft-Windows-Sysmon" and EventID in (8,10)

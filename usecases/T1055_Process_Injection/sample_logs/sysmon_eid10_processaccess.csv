@@ -1,0 +1,3 @@
+TimeCreated,Computer,User,EventID,Image,TargetImage,GrantedAccess,CallTrace
+2025-08-16T07:40:09+05:30,WS-610,acme\jane.doe,10,C:\Windows\System32\rundll32.exe,C:\Windows\System32\lsass.exe,0x1410,C:\Windows\System32\ntdll.dll+0x88
+2025-08-16T07:42:00+05:30,WS-610,acme\jane.doe,10,C:\Windows\System32\powershell.exe,C:\Windows\System32\winlogon.exe,0x1f3fff,C:\Windows\System32\ntdll.dll+0x91
